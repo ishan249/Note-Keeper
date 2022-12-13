@@ -1,0 +1,38 @@
+.NoFound{
+    font-family: 'Albert Sans';
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    color:black;
+}
+.NotesArea{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.noteBox{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: black;
+    font-family: 'Albert Sans';
+    width:280px;
+    height: 240px;
+    padding: 20px;
+    margin: 10px;
+    border-radius:16px;
+    position: relative;
+}
+.deleteBtn{
+    position: absolute;
+    bottom: 0;
+    color: #002D62;
+    font-weight: bold;
+    border: none;
+    margin: 8px;
+    background-color: white;
+    font-family: 'Albert Sans';
+    font-size: 16px;
+}
+.deleteBtn:hover{
+    text-decoration: underline;
+}
+  

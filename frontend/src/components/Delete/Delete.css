@@ -1,0 +1,51 @@
+.mainDeletionPage{
+    display: flex;
+    justify-content: center;
+    font-family: 'Albert Sans';
+}
+.deleteHead{
+    margin-top: 20px;
+}
+.deleteDialog{
+    /* height: 300px; */
+    width: 400px;
+    border: 1px black solid;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: black;
+    border-radius:16px;
+    margin:40px;
+}
+.noteTitle{
+    margin-top: 26px;
+    font-size: 20px;
+}
+.delBtns{
+    margin: 20px;
+}
+.YesBtn{
+    margin: 14px;
+    color: white;
+    background-color: rgb(233, 32, 32);
+    font-size: 20px;
+    width: 60px;
+    border: 1px rgb(233, 32, 32) solid;
+    border-radius: 8px;
+}
+.YesBtn:hover{
+    color: rgb(233, 32, 32);
+    background-color: white;
+}
+.NoBtn{
+    margin: 14px;
+    color: white;
+    background-color: rgb(51, 51, 243);
+    font-size: 20px;
+    width: 60px;
+    border: 1px rgb(51, 51, 243) solid;
+    border-radius: 8px;
+}
+.NoBtn:hover{
+    color: rgb(51, 51, 243);
+    background-color: white;
+}
