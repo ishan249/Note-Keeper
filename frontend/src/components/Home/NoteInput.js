@@ -6,10 +6,18 @@ function NoteInput() {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  
   const token = localStorage.getItem("token");
   const handleSubmit = (e) => {
     e.preventDefault();
-    const note = { title, content };
+    const date = new Date();
+    const month = (date.getMonth())+1;
+    const year = date.getFullYear();
+    const todayDate = date.getDate();
+    const timestamp = `${todayDate}/${month}/${year}`;
+    const note = { title, content, timestamp };
+    
+ 
     axios({
       method: "POST",
       url: `${process.env.REACT_APP_NOTEKEEP}/notes/create`,
@@ -33,14 +41,14 @@ function NoteInput() {
               className="titleText"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="Note Title"
+              placeholder="Title"
               type="text"
             />
             <input
               className="descriptionText"
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              placeholder="Note Description"
+              placeholder="Write your Note here..."
             />
           </div>
           <hr style={{ margin: "16px" }} />

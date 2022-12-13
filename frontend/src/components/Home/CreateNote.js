@@ -18,4 +18,4 @@ function CreateNote() {
   )
 }
 
-export default CreateNote
+export default CreateNote;

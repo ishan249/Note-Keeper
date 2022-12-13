@@ -14,12 +14,12 @@ const noteSchema = new mongoose.Schema({
     type:mongoose.Schema.Types.ObjectId,
     required:true,
     ref:'User',
+  },
+  timestamp:{
+    type:String
   }
 },
-{
-  timestamps:true,
-  toJSON:{virtuals:true},
-}
+
 );
 
 const Note = mongoose.model("Note",noteSchema);

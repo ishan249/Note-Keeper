@@ -5,6 +5,8 @@ import "./ShowNotes.css"
 function ShowNotes() {
   const [title,setTitle]= useState("");
   const [content, setContent] = useState("");
+  const [timestamp,setTime]= useState("");
+
   const token = localStorage.getItem("token");
   const {id} = useParams(); 
 
@@ -18,6 +20,7 @@ function ShowNotes() {
       .then((res) => {
         setTitle(res.data.title);
         setContent(res.data.content);
+        setTime(res.data.timestamp);
       })
       .catch((e) => {
         console.log(e.message);
@@ -28,6 +31,8 @@ function ShowNotes() {
     <div>
       <div className='NoteDescription'>
       <h2>{title}</h2>
+      <span style={{fontSize:"18px"}}>{timestamp}</span>
+      <br />
       <br />
       <p>{content}</p>
       </div>

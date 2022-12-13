@@ -38,9 +38,12 @@ input:focus {
   outline: none;
   font-size: 16px;
 }
-::placeholder {
-  font-size: 14px;
-  font-weight: bold;
+.titleText::placeholder {
+  font-size: 18px;
+  font-family: 'Albert Sans';
+}
+.descriptionText::placeholder {
+  font-size: 16px;
   font-family: 'Albert Sans';
 }
 .addBtn {
@@ -67,4 +70,8 @@ input:focus {
   border: none;
   font-family: "Albert Sans";
   border-radius: 10px;
+}
+.content{
+  margin-top: 16px;
+  height: 130px;
 }

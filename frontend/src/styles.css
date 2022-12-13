@@ -61,13 +61,15 @@ input {
   margin: 6px;
 }
 .btnDiv {
-  margin: 8px;
+  margin: 22px;
   font-weight: bold;
   font-family: "Albert sans";
+  /* border:1px white solid; */
   color: #002d62;
-  display: flex;
-  justify-content: right;
-  
+  /* display: flex;
+  justify-content: center; */
+  align-content: center;
+
 }
 .headings {
   margin: 14px;
@@ -83,7 +85,12 @@ input {
   border: none;
   border-radius: 8px;
   padding: 6px;
-  height: 60px;
+  color:black;
+}
+.btnss:hover{
+  background-color: #002d62;
+  color:white;
+
 }
 #footer {
   position: fixed;

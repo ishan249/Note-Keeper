@@ -42,6 +42,7 @@ function Home() {
           color: "#002D62",
           fontFamily: "Albert Sans",
           margin: "20px 10px",
+          textAlign:"center"
         }}
       >
         Your Notes
@@ -53,21 +54,36 @@ function Home() {
           <div className="NotesArea">
             {noteList &&
               noteList.map((note) => (
-                <Link to = {`/notes/${note._id}`} style={{ textDecoration: 'none' }}>
-                <div className="noteBox">
-                  <h3>{note.title}</h3>
-                  <hr />
-                  {note.content.length>70?<p>{note.content.substring(0,70) + "....."}</p>:<p>{note.content}</p>}
-                  
-                  
-                  <Link to ={`/delete/${note._id}`}>
-                  <div style={{ display: "flex", justifyContent: "right", marginBottom:"30px" }}>
-                    
-                    <span className="deleteBtn">Delete</span>
+                <Link
+                  to={`/notes/${note._id}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <div className="noteBox">
+                    <h3>{note.title}</h3>
+                    <div className="content">
+                    {note.content.length > 70 ? (
+                      <p>{note.content.substring(0, 70) + "....."}</p>
+                    ) : (
+                      <p>{note.content}</p>
+                    )}
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        marginBottom: "30px",
+                        
+                        bottom: "0"
+                      }}
+                    >
+                      <div>{note.timestamp}</div>
+                      <div>
+                        <Link to={`/delete/${note._id}`}>
+                          <span className="deleteBtn">Delete</span>
+                        </Link>
+                      </div>
+                    </div>
                   </div>
-                  </Link>
-
-                </div>
                 </Link>
               ))}
           </div>
