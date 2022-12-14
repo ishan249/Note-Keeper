@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import {useNavigate } from "react-router-dom";
 import "./Home.css";
+import {motion} from "framer-motion";
 function NoteInput() {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
@@ -33,7 +34,11 @@ function NoteInput() {
   };
 
   return (
-    <div className="noteInputBox">
+    <motion.div
+    initial={{opacity:0}}
+    animate={{opacity:1}}
+    transition= {{duration:0.5}}
+    className="noteInputBox">
       <div className="mainNote">
         <form onSubmit={handleSubmit}>
           <div className="notediv">
@@ -59,7 +64,7 @@ function NoteInput() {
           </div>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 }
 export default NoteInput;

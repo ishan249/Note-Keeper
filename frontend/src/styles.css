@@ -69,7 +69,9 @@ input {
   /* display: flex;
   justify-content: center; */
   align-content: center;
-
+ position: relative;
+ width: 140px;
+ text-align: right;
 }
 .headings {
   margin: 14px;
@@ -80,12 +82,14 @@ input {
   /* margin:10px; */
 }
 .btnss {
-  margin: 10px;
+  margin: 6px 10px;
   background-color: white;
   border: none;
   border-radius: 8px;
-  padding: 6px;
+  padding: 4px;
   color:black;
+  width: 120px;
+ 
 }
 .btnss:hover{
   background-color: #002d62;
@@ -99,4 +103,11 @@ input {
   height: 60px;   /* Height of the footer */
   text-align: center;
   font-family: 'Albert Sans';
+}
+
+hr{
+
+  background: black;
+  color: black;
+  margin: 0;
 }

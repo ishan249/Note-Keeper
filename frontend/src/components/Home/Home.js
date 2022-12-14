@@ -2,9 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./note.css";
 import { Link } from "react-router-dom";
-import CreateNote from "./CreateNote";
 import "./Home.css";
-
+import {motion} from "framer-motion"
 function Home() {
   const [noteList, setNotes] = useState([]);
 
@@ -42,7 +41,7 @@ function Home() {
           color: "#002D62",
           fontFamily: "Albert Sans",
           margin: "20px 10px",
-          textAlign:"center"
+          textAlign: "center",
         }}
       >
         Your Notes
@@ -51,29 +50,34 @@ function Home() {
         (noteList.length === 0 && <h2 className="NoFound">No Notes Found</h2>)}
       <div>
         {noteList && (
-          <div className="NotesArea">
+          <div
+          className="NotesArea">
             {noteList &&
-              noteList.map((note) => (
+              noteList.map((note,i) => (
                 <Link
                   to={`/notes/${note._id}`}
                   style={{ textDecoration: "none" }}
                 >
-                  <div className="noteBox">
+                  <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5,delay:i*0.1}}
+                  className="noteBox">
                     <h3>{note.title}</h3>
                     <div className="content">
-                    {note.content.length > 70 ? (
-                      <p>{note.content.substring(0, 70) + "....."}</p>
-                    ) : (
-                      <p>{note.content}</p>
-                    )}
+                      {note.content.length > 70 ? (
+                        <p>{note.content.substring(0, 70) + "....."}</p>
+                      ) : (
+                        <p>{note.content}</p>
+                      )}
                     </div>
                     <div
                       style={{
                         display: "flex",
                         justifyContent: "space-between",
                         marginBottom: "30px",
-                        
-                        bottom: "0"
+
+                        bottom: "0",
                       }}
                     >
                       <div>{note.timestamp}</div>
@@ -83,7 +87,7 @@ function Home() {
                         </Link>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 </Link>
               ))}
           </div>

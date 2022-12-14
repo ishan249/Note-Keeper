@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles.css";
 import user from "../../images/user (1).png";
@@ -14,10 +14,9 @@ if (date >= 0 && date < 12) {
   greet = "Evening";
 }
 
-
 function Navbarpage() {
   const navigate = useNavigate();
-  const [state, setState] = useState(false)
+  const [state, setState] = useState(false);
   const [username, setUsername] = useState("");
   const token = localStorage.getItem("token");
 
@@ -68,7 +67,6 @@ function Navbarpage() {
     });
   };
 
-  
   const toggle = (e) => {
     e.preventDefault();
     console.log(state);
@@ -77,7 +75,7 @@ function Navbarpage() {
 
   return (
     <div>
-      <header style={{height:"160px"}} className="head">
+      <header style={{ height: "160px" }} className="head">
         <div className="newHeader">
           <div className="headings">
             <p style={{ fontSize: "30px" }}>Note keeper</p>
@@ -107,19 +105,25 @@ function Navbarpage() {
                 alt=""
               />
             </button>
-            
+
             {state ? (
-  <div style={{backgroundColor:"white",boxShadow:"rgba(0, 0, 0, 0.35) 0px 5px 15px", borderRadius:"8px"}}>
+              <div
+                style={{
+                  backgroundColor: "white",
+                  boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+                  borderRadius: "8px",
+                  marginTop:"10px"
+                }}
+              >
                 <button className="btnss" onClick={handleSignOut}>
                   Sign Out
                 </button>
-                <br />
+                <hr />
                 <button className="btnss" onClick={handleDeleteAccount}>
                   Delete Account
                 </button>
               </div>
             ) : null}
-            
           </div>
         </div>
       </header>
