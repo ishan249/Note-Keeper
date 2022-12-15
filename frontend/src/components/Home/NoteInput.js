@@ -18,7 +18,7 @@ function NoteInput() {
     const timestamp = `${todayDate}/${month}/${year}`;
     const note = { title, content, timestamp };
     
- 
+    //saving a note in database with it's title, content and time on which it was created
     axios({
       method: "POST",
       url: `${process.env.REACT_APP_NOTEKEEP}/notes/create`,

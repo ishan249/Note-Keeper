@@ -33,7 +33,7 @@ input:focus {
   /* border: none; */
 }
 .descriptionText {
-  height: 60px;
+  height: 80px;
   /* border: none; */
   outline: none;
   font-size: 16px;
@@ -61,7 +61,7 @@ input:focus {
   background-color: #0066b2;
 }
 .createBtn {
-  background-color: #002d62;
+  background-color: rgb(16, 16, 16);
   color: white;
   height: 36px;
   width: 108px;
@@ -70,6 +70,11 @@ input:focus {
   border: none;
   font-family: "Albert Sans";
   border-radius: 10px;
+  transition: 0.2s;
+}
+.createBtn:hover{
+ transform: scale(1.04);
+ background-color: #002d62;
 }
 .content{
   margin-top: 16px;

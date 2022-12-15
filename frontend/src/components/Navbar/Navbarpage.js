@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../../styles.css";
 import user from "../../images/user (1).png";
 const date = new Date().getHours();
@@ -19,6 +19,8 @@ function Navbarpage() {
   const [state, setState] = useState(false);
   const [username, setUsername] = useState("");
   const token = localStorage.getItem("token");
+  
+  // Using get request to get username to greet the user in navbar
 
   axios({
     url: `${process.env.REACT_APP_NOTEKEEP}/users/me`,
@@ -33,6 +35,9 @@ function Navbarpage() {
     .catch((e) => {
       console.log(e.message);
     });
+
+
+  //handling signout and delete account events
 
   const handleSignOut = () => {
     const token = localStorage.getItem("token");
@@ -67,6 +72,8 @@ function Navbarpage() {
     });
   };
 
+
+  //using toggle function to toggle state value to show signout/deleteaccount options on clicking account photo
   const toggle = (e) => {
     e.preventDefault();
     console.log(state);
@@ -78,7 +85,7 @@ function Navbarpage() {
       <header style={{ height: "160px" }} className="head">
         <div className="newHeader">
           <div className="headings">
-            <p style={{ fontSize: "30px" }}>Note keeper</p>
+            <p style={{ fontSize: "34px" }}>Note keeper</p>
             <p>
               Good {greet} {username}
             </p>

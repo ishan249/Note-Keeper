@@ -46,10 +46,12 @@ function Home() {
       >
         Your Notes
       </h2>
+      {/* checking if Notes are there or not */}
       {!noteList ||
         (noteList.length === 0 && <h2 className="NoFound">No Notes Found</h2>)}
       <div>
         {noteList && (
+          // if notes are there mapping it to a div
           <div
           className="NotesArea">
             {noteList &&
@@ -65,6 +67,9 @@ function Home() {
                   className="noteBox">
                     <h3>{note.title}</h3>
                     <div className="content">
+
+                    {/* checking if note description has length greater than 70 or not if more than 70 render ... */}
+
                       {note.content.length > 70 ? (
                         <p>{note.content.substring(0, 70) + "....."}</p>
                       ) : (
