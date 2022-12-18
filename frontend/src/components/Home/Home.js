@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./note.css";
-import { Link } from "react-router-dom";
 import "./Home.css";
-import {motion} from "framer-motion"
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 function Home() {
   const [noteList, setNotes] = useState([]);
 
@@ -52,26 +52,30 @@ function Home() {
       <div>
         {noteList && (
           // if notes are there mapping it to a div
-          <div
-          className="NotesArea">
+          <div className="NotesArea">
             {noteList &&
-              noteList.map((note,i) => (
+              noteList.map((note, i) => (
                 <Link
                   to={`/notes/${note._id}`}
                   style={{ textDecoration: "none" }}
                 >
                   <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5,delay:i*0.1}}
-                  className="noteBox">
-                    <h3>{note.title}</h3>
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    className="noteBox"
+                  >
+                    {/* if note title string is bigger than 20 than create substring of 20 character followed by ... */}
+                    {note.title.length > 20 ? (
+                      <h3>{note.title.substring(0, 20) + "....."}</h3>
+                    ) : (
+                      <h3>{note.title}</h3>
+                    )}
                     <div className="content">
+                      {/* checking if note description has length greater than 70 or not if more than 70 render ... */}
 
-                    {/* checking if note description has length greater than 70 or not if more than 70 render ... */}
-
-                      {note.content.length > 70 ? (
-                        <p>{note.content.substring(0, 70) + "....."}</p>
+                      {note.content.length > 50 ? (
+                        <p>{note.content.substring(0, 50) + "....."}</p>
                       ) : (
                         <p>{note.content}</p>
                       )}
@@ -81,7 +85,6 @@ function Home() {
                         display: "flex",
                         justifyContent: "space-between",
                         marginBottom: "30px",
-
                         bottom: "0",
                       }}
                     >
