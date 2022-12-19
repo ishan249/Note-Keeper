@@ -40,20 +40,23 @@ function Navbarpage() {
   //handling signout and delete account events
 
   const handleSignOut = () => {
-    const token = localStorage.getItem("token");
-
+    const token= localStorage.getItem("refreshToken");
     axios({
       method: "POST",
       url: `${process.env.REACT_APP_NOTEKEEP}/user/logout`,
       headers: {
         Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json", 
       },
     }).then(() => {
-      const isTokenExists = localStorage.getItem("token");
+      const isTokenExists = localStorage.getItem("refreshToken");
       if (isTokenExists) {
-        localStorage.removeItem("token");
+        localStorage.removeItem("refreshToken");
         navigate("/");
       }
+    }).catch((e)=>{
+      console.log(e);
+      console.log("Reaching here and give up");
     });
   };
 
@@ -123,7 +126,7 @@ function Navbarpage() {
                 }}
               >
                 <button className="btnss" onClick={handleSignOut}>
-                  Sign Out
+                  Log Out
                 </button>
                 <hr />
                 <button className="btnss" onClick={handleDeleteAccount}>

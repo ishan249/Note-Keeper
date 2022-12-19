@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const Note = require("./notes.js");
+const Note= require("./notes.js");
+const Token = require("./token.js");
+const {ACCESS_TOKEN_SECRET,REFRESH_TOKEN_SECRET } = process.env;
 const userSchema = new mongoose.Schema(
   {
     username: {
@@ -16,14 +18,14 @@ const userSchema = new mongoose.Schema(
       trim: true,
       minlength: 8,
     },
-    tokens: [
-      {
-        token: {
-          type: String,
-          required: true,
-        },
-      },
-    ],
+    // tokens: [
+    //   {
+    //     token: {
+    //       type: String,
+    //       required: true,
+    //     },
+    //   },
+    // ],
   },
   {
     timestamps: true,
@@ -50,13 +52,31 @@ userSchema.methods.generateAuthToken = async function () {
     {
       _id: user.id.toString(),
     },
-    process.env.NOTE_JWT_SECRET
+    ACCESS_TOKEN_SECRET,{
+      expiresIn:"1m",
+    }
   );
 
-  user.tokens = user.tokens.concat({ token });
-  await user.save();
+  // user.tokens = user.tokens.concat({ token });
+  // await user.save();
   return token;
 };
+
+
+userSchema.methods.createRefreshToken = async function (){
+  const user = this;
+  const refreshToken = jwt.sign(
+    {
+
+      _id: user.id.toString(),
+    },
+    REFRESH_TOKEN_SECRET, {
+      expiresIn:"2d",
+    }
+  );
+  await new Token({token:refreshToken}).save();
+  return refreshToken;
+}
 
 userSchema.statics.findByCredentials = async (username, password) => {
   const user = await User.findOne({ username });

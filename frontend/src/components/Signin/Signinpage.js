@@ -25,8 +25,10 @@ function Signinpage() {
         }).then((res)=>{
             console.log("user logged in");
             const token = res.data.token;
-            console.log(token);
+            const refreshToken = res.data.refreshToken;
+            console.log(token, refreshToken);
             localStorage.setItem("token",token);
+            localStorage.setItem("refreshToken", res.data.refreshToken);
             navigate("/dashboard");
         }).catch((e)=>{
             alert(e);
@@ -51,6 +53,7 @@ function Signinpage() {
         }).then((res)=>{
             console.log("new user created");
             localStorage.setItem("token", res.data.token);
+            localStorage.setItem("refreshToken", res.data.refreshToken);
             navigate("/dashboard");
 
         }).catch((e)=>{
