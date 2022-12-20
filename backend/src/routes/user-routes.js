@@ -49,13 +49,11 @@ router.post("/user/generateRefreshToken", async (req,res)=>{
     else{
       const payload = jwt.verify(tokenDoc.token, REFRESH_TOKEN_SECRET);
       const token = jwt.sign({user:payload}, ACCESS_TOKEN_SECRET,{
-        expiresIn:"1m",
+        expiresIn:"10m",
       });
       return res.status(200).json({token});
     }
   }
-  
-  
 }
 catch(e){
   console.log("can't generate refresh token");

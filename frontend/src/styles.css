@@ -41,7 +41,7 @@ input {
 .btns {
   margin: 14px 12px;
   font-family: "Albert Sans";
-  height: 36px;
+  /* height: 40px; */
   border-radius: 6px;
   border: none;
   background-color: rgb(43, 43, 183);
@@ -51,7 +51,18 @@ input {
 .btns:hover {
   background-color: rgb(53, 53, 221);
 }
-
+.createbtn{
+  margin: 14px 12px;
+  font-family: "Albert Sans";
+  /* height: 40px; */
+  border-radius: 6px;
+  border: 1px black solid;
+  font-weight: bold;
+  /* border: none; */
+  background-color: white;
+  color: rgb(43, 43, 183);
+  padding:8px;
+}
 .head {
   background-color: #002d62;
   color: white;

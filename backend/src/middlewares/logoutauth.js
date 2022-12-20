@@ -28,9 +28,12 @@ const logoutauth = async (req, res, next) => {
     next();
     return body;
   } catch (e) {
-    console.log("reached at this auth.js file error");
-    console.log(e);
-    res.status(401).send({ Error: "Unauthenticated" });
+    if (e.name === "TokenExpiredError") {
+      console.log("reached at token auth.js file error");
+      return res
+        .status(401)
+        .json({ error: "Session timed out,please login again" });
+    }
   }
 };
 

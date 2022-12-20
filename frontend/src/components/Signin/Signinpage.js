@@ -93,7 +93,7 @@ function Signinpage() {
             </div>
 
             <button onClick={handleLogIn} className="btns">Log in</button>
-            <button onClick={handleRegister} className="btns">Create Account</button>
+            <button onClick={handleRegister} className="createbtn">Create Account</button>
           </form>
         </div>
       </div>

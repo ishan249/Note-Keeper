@@ -53,7 +53,7 @@ userSchema.methods.generateAuthToken = async function () {
       _id: user.id.toString(),
     },
     ACCESS_TOKEN_SECRET,{
-      expiresIn:"1m",
+      expiresIn:"10m",
     }
   );
 

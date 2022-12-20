@@ -5,44 +5,52 @@ import "./Home.css";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 function Home() {
-
-  axios.interceptors.request.use((config)=>{
-    const token = localStorage.getItem("token");
-    if(token){
-      config.headers["Authorization"] = token;
+  axios.interceptors.request.use(
+    (config) => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        config.headers["Authorization"] = "Bearer " + token;
+      }
+      return config;
+    },
+    (error) => {
+      Promise.reject(error);
     }
-    return config;
-  },
-  (error)=>{
-    Promise.reject(error);
-  }
   );
 
-
-
-
-  axios.interceptors.response.use((response)=>{
-    return response;
-  }, function(error){
-    const originalRequest = error.config;
-    let refreshToken = localStorage.getItem("refreshToken");
-    if(refreshToken && error.response.status === 401 && !originalRequest._retry){
-      originalRequest._retry= true;
-      return axios.post(`${process.env.REACT_APP_NOTEKEEP}/user/generateRefreshToken`, {refreshToken:refreshToken}).then((res)=>{
-        if(res.status===200){
-          localStorage.setItem("token", res.data.token);
-          console.log("token refreshed");
-          return axios(originalRequest);
-        }
-      });
+  axios.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    function (error) {
+      const originalRequest = error.config;
+      let refreshToken = localStorage.getItem("refreshToken");
+      if (
+        refreshToken &&
+        error.response.status === 401 &&
+        !originalRequest._retry
+      ) {
+        originalRequest._retry = true;
+        return axios
+          .post(`${process.env.REACT_APP_NOTEKEEP}/user/generateRefreshToken`, {
+            refreshToken: refreshToken,
+          })
+          .then((res) => {
+            if (res.status === 200) {
+              localStorage.setItem("refreshToken", res.data.token);
+              console.log("token refreshed");
+              return axios(originalRequest);
+            }
+          });
+      }
+      return Promise.reject(error);
     }
-    return Promise.reject(error);
-  })
+  );
 
   const [noteList, setNotes] = useState([]);
 
   const callFn = () => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("refreshToken");
     axios
       .get(`${process.env.REACT_APP_NOTEKEEP}/notes/get`, {
         headers: {
