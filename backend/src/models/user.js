@@ -53,12 +53,9 @@ userSchema.methods.generateAuthToken = async function () {
       _id: user.id.toString(),
     },
     ACCESS_TOKEN_SECRET,{
-      expiresIn:"10m",
+      expiresIn:"20m",
     }
   );
-
-  // user.tokens = user.tokens.concat({ token });
-  // await user.save();
   return token;
 };
 
@@ -67,11 +64,10 @@ userSchema.methods.createRefreshToken = async function (){
   const user = this;
   const refreshToken = jwt.sign(
     {
-
       _id: user.id.toString(),
     },
     REFRESH_TOKEN_SECRET, {
-      expiresIn:"2d",
+      expiresIn:"30m",
     }
   );
   await new Token({token:refreshToken}).save();

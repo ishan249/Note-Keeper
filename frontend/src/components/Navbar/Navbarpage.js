@@ -18,7 +18,7 @@ function Navbarpage() {
   const navigate = useNavigate();
   const [state, setState] = useState(false);
   const [username, setUsername] = useState("");
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("refreshToken");
   
   // Using get request to get username to greet the user in navbar
 

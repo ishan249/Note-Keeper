@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const Token = require("../models/token.js");
 const {ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET} = process.env;
 const auth = require("../middlewares/auth.js");
-const logoutauth = require("../middlewares/logoutauth.js");
+
 router.post("/users/create", async (req, res) => {
   const { username, password } = req.body;
   const user = new User({ username, password });
@@ -47,10 +47,12 @@ router.post("/user/generateRefreshToken", async (req,res)=>{
       return res.status(401).send({ message: "Token expired!" });
     }
     else{
+      console.log("I am priting the refresh token found in database",tokenDoc);
       const payload = jwt.verify(tokenDoc.token, REFRESH_TOKEN_SECRET);
       const token = jwt.sign({user:payload}, ACCESS_TOKEN_SECRET,{
-        expiresIn:"10m",
+        expiresIn:"20m",
       });
+      await new Token({token:token}).save();
       return res.status(200).json({token});
     }
   }
@@ -62,18 +64,10 @@ catch(e){
 });
 
 
-router.post("/user/logout", logoutauth, async (req, res) => {
+router.post("/user/logout", auth, async (req, res) => {
   try {
-    console.log("starting to log out");
     const refreshToken = req.body.token;
     await Token.findOneAndDelete({token:refreshToken});
-    // req.Token.token = req.Token.token.filter((Token) => {
-    //     return Token.token !== req.token;
-    // }); 
-    console.log("searched token");
-
-    // await req.user.save();
-    console.log("logging out");
     res.send({ message: "Logged Out" });
 } catch (e) {
     res.status(500).send(e);

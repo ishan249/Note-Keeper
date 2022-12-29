@@ -45,7 +45,7 @@ router.delete("/notes/:id",async(req,res)=>{
   try{
     const note = await Note.findOneAndDelete({_id:req.params.id});
     if(!note){
-      res.status(404).send();
+      res.status(404).send({message:"Note not found"});
     }
     res.send({message:"note deleted"});
   }

@@ -4,6 +4,7 @@ import "./note.css";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+
 function Home() {
   axios.interceptors.request.use(
     (config) => {
